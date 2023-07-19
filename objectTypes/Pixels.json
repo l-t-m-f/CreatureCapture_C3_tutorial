@@ -1,0 +1,35 @@
+{
+	"name": "Pixels",
+	"plugin-id": "TiledBg",
+	"sid": 311948685231126,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 998549918282789
+		}
+	],
+	"effectTypes": [
+		{
+			"effectId": "vignette",
+			"name": "Vignette"
+		},
+		{
+			"effectId": "multiply",
+			"name": "Multiply"
+		}
+	],
+	"image": {
+		"width": 1,
+		"height": 1,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "lossless",
+		"exportQuality": 0.8,
+		"imageSpriteId": 3556602,
+		"useCollisionPoly": true
+	}
+}

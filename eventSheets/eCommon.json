@@ -1,0 +1,127 @@
+{
+	"name": "eCommon",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 558898494622768
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "VignetteTransition",
+					"sid": 461402977126115
+				}
+			],
+			"sid": 936404463906196
+		},
+		{
+			"functionName": "VignetteTransition",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [
+				{
+					"id": "pick-by-comparison",
+					"objectClass": "System",
+					"sid": 994268559588957,
+					"parameters": {
+						"object": "Pixels",
+						"expression": "Pixels.TemplateName",
+						"comparison": 0,
+						"value": "\"Vignette\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "tween-value",
+					"objectClass": "Pixels",
+					"sid": 384080753592619,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"AnimateStartRadius\"",
+						"start-value": "0",
+						"end-value": "30",
+						"time": "1",
+						"ease": "default",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				},
+				{
+					"id": "tween-value",
+					"objectClass": "Pixels",
+					"sid": 119724845472000,
+					"behaviorType": "Tween",
+					"parameters": {
+						"tags": "\"AnimateEndRadius\"",
+						"start-value": "0",
+						"end-value": "75",
+						"time": "1",
+						"ease": "default",
+						"destroy-on-complete": "no",
+						"loop": "no",
+						"ping-pong": "no",
+						"repeat-count": "1"
+					}
+				}
+			],
+			"sid": 690551431255671
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-any-playing",
+					"objectClass": "Pixels",
+					"sid": 525667133318204,
+					"behaviorType": "Tween"
+				},
+				{
+					"id": "compare-two-values",
+					"objectClass": "System",
+					"sid": 139310604759866,
+					"parameters": {
+						"first-value": "Pixels.TemplateName",
+						"comparison": 0,
+						"second-value": "\"Vignette\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-effect-parameter",
+					"objectClass": "Pixels",
+					"sid": 988479029242742,
+					"parameters": {
+						"effect": "\"Vignette\"",
+						"parameter-index": "0",
+						"value": "Self.Tween.Value(\"AnimateStartRadius\")"
+					}
+				},
+				{
+					"id": "set-effect-parameter",
+					"objectClass": "Pixels",
+					"sid": 722239734976866,
+					"parameters": {
+						"effect": "\"Vignette\"",
+						"parameter-index": "1",
+						"value": "Self.Tween.Value(\"AnimateEndRadius\")"
+					}
+				}
+			],
+			"sid": 370683373239674
+		}
+	],
+	"sid": 397243133691114
+}

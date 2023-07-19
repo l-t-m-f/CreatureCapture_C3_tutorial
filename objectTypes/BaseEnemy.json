@@ -1,0 +1,73 @@
+{
+	"name": "BaseEnemy",
+	"plugin-id": "Sprite",
+	"sid": 125334019871506,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "BattleActive",
+			"type": "boolean",
+			"desc": "Can trigger a transition to BattleTest layout.",
+			"show": false,
+			"sid": 826137329167689
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "TileMovement",
+			"name": "TileMovement",
+			"sid": 945327111995422
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 679811684433670
+		},
+		{
+			"behaviorId": "Persist",
+			"name": "Persist",
+			"sid": 744215854400044
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 8039360,
+						"useCollisionPoly": true,
+						"duration": 1
+					},
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 296608,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 455467798329190,
+				"name": "State",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}

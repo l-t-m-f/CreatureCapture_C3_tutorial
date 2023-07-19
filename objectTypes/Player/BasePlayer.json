@@ -1,0 +1,48 @@
+{
+	"name": "BasePlayer",
+	"plugin-id": "Sprite",
+	"sid": 902786434007446,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "EightDir",
+			"name": "8Direction",
+			"sid": 750064775353387
+		},
+		{
+			"behaviorId": "Persist",
+			"name": "Persist",
+			"sid": 861984749517893
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 32,
+						"height": 32,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 36095,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 443490686494638,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}
