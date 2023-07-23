@@ -1,9 +1,31 @@
 {
-	"name": "EntityShadow",
+	"name": "MapTransitor",
 	"plugin-id": "Sprite",
-	"sid": 255087306821432,
+	"sid": 522412040800322,
 	"isGlobal": false,
-	"instanceVariables": [],
+	"instanceVariables": [
+		{
+			"name": "GotoLayout",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 490524614651250
+		},
+		{
+			"name": "GotoX",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 808893342350241
+		},
+		{
+			"name": "GotoY",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 337037042473594
+		}
+	],
 	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
@@ -12,18 +34,18 @@
 				"frames": [
 					{
 						"width": 32,
-						"height": 16,
-						"originX": 0.5,
+						"height": 32,
+						"originX": 0,
 						"originY": 0,
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 3090476,
+						"imageSpriteId": 5312034,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 217488226704090,
+				"sid": 848331577022821,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

@@ -22,6 +22,13 @@
 		},
 		{
 			"type": "plugin",
+			"id": "NinePatch",
+			"name": "9-patch",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Sprite",
 			"name": "Sprite",
 			"author": "Scirra",
@@ -59,6 +66,13 @@
 			"type": "behavior",
 			"id": "EightDir",
 			"name": "8 Direction",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "behavior",
+			"id": "Fade",
+			"name": "Fade",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -135,13 +149,13 @@
 			"Text",
 			"Keyboard",
 			"EntityShadow",
-			"BaseEnemy",
-			"BigPlayerArt",
-			"BigEnemyArt",
 			"BattleStage",
 			"Button",
 			"TestLandmark",
-			"Pixels"
+			"Pixels",
+			"MapTransitor",
+			"InteractRange",
+			"9patch"
 		],
 		"subfolders": [
 			{
@@ -150,10 +164,27 @@
 					"PlatformSimFloor",
 					"PlatformSimPlayer",
 					"PlayerArt",
-					"EnemyArt"
+					"BigPlayerArt"
 				],
 				"subfolders": [],
 				"name": "Player"
+			},
+			{
+				"items": [
+					"BaseEnemy",
+					"BigEnemyArt",
+					"EnemyArt"
+				],
+				"subfolders": [],
+				"name": "Enemy"
+			},
+			{
+				"items": [
+					"NPCArt",
+					"BaseNPC"
+				],
+				"subfolders": [],
+				"name": "NPC"
 			}
 		]
 	},
@@ -171,10 +202,18 @@
 		"subfolders": [
 			{
 				"items": [
-					"OverworldTest",
 					"BattleTest"
 				],
-				"subfolders": [],
+				"subfolders": [
+					{
+						"items": [
+							"Overworld1_1",
+							"Overworld1_2"
+						],
+						"subfolders": [],
+						"name": "OverworldTest"
+					}
+				],
 				"name": "GameTestLayouts"
 			}
 		]
@@ -270,7 +309,16 @@
 			"subfolders": []
 		},
 		"general": {
-			"items": [],
+			"items": [
+				{
+					"name": "reminders.txt",
+					"type": "text/plain",
+					"sid": 788230959892017,
+					"file-info": {
+						"purpose": "none"
+					}
+				}
+			],
 			"subfolders": []
 		}
 	},
@@ -341,5 +389,5 @@
 	},
 	"viewportWidth": 640,
 	"viewportHeight": 360,
-	"firstLayout": "OverworldTest"
+	"firstLayout": "Overworld1_1"
 }

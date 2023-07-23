@@ -1,16 +1,25 @@
 {
-	"name": "BasePlayer",
+	"name": "BaseNPC",
 	"plugin-id": "Sprite",
-	"sid": 902786434007446,
+	"sid": 800597179759568,
 	"isGlobal": false,
-	"instanceVariables": [],
-	"behaviorTypes": [
+	"instanceVariables": [
 		{
-			"behaviorId": "EightDir",
-			"name": "8Direction",
-			"sid": 750064775353387
+			"name": "DialogLineTest",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 368791929565368
+		},
+		{
+			"name": "NPCName",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 224413921177548
 		}
 	],
+	"behaviorTypes": [],
 	"effectTypes": [],
 	"animations": {
 		"items": [
@@ -24,7 +33,7 @@
 						"originalSource": "",
 						"exportFormat": "lossless",
 						"exportQuality": 0.8,
-						"imageSpriteId": 36095,
+						"imageSpriteId": 8957404,
 						"collisionPoly": {
 							"points": [
 								0.0625,
@@ -41,7 +50,7 @@
 						"duration": 1
 					}
 				],
-				"sid": 443490686494638,
+				"sid": 830583769103841,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

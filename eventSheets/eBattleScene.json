@@ -6,44 +6,54 @@
 			"includeSheet": "eCommon"
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-clicked",
-					"objectClass": "Button",
-					"sid": 737944707896577
-				}
-			],
-			"actions": [],
-			"sid": 608024407741406,
+			"eventType": "group",
+			"disabled": false,
+			"title": "Debugging_battle",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "compare-two-values",
-							"objectClass": "System",
-							"sid": 445383679352058,
-							"parameters": {
-								"first-value": "Button.TemplateName",
-								"comparison": 0,
-								"second-value": "\"BackToOverworldButton\""
-							}
+							"id": "on-clicked",
+							"objectClass": "Button",
+							"sid": 121740870707172
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 638187515140550,
+					"children": [
 						{
-							"id": "go-to-layout",
-							"objectClass": "System",
-							"sid": 492662502836696,
-							"parameters": {
-								"layout": "OverworldTest"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 812070574532509,
+									"parameters": {
+										"first-value": "Button.TemplateName",
+										"comparison": 0,
+										"second-value": "\"BackToOverworldButton\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "go-to-layout",
+									"objectClass": "System",
+									"sid": 847011937535720,
+									"parameters": {
+										"layout": "Overworld1_1"
+									}
+								}
+							],
+							"sid": 663518705961048
 						}
-					],
-					"sid": 275362824499440
+					]
 				}
-			]
+			],
+			"sid": 196736813930928
 		}
 	],
 	"sid": 686241893094059

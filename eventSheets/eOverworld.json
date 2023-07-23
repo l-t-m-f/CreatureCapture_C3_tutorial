@@ -36,48 +36,6 @@
 			"sid": 710135160312582
 		},
 		{
-			"functionName": "SpawnEnemy",
-			"functionDescription": "",
-			"functionCategory": "",
-			"functionReturnType": "none",
-			"functionCopyPicked": false,
-			"functionIsAsync": false,
-			"functionParameters": [
-				{
-					"name": "spawn_x",
-					"type": "number",
-					"initialValue": "-1",
-					"comment": "",
-					"sid": 688456415968001
-				},
-				{
-					"name": "spawn_y",
-					"type": "number",
-					"initialValue": "-1",
-					"comment": "",
-					"sid": 182758624636922
-				}
-			],
-			"eventType": "function-block",
-			"conditions": [],
-			"actions": [
-				{
-					"id": "create-object",
-					"objectClass": "System",
-					"sid": 427502989399550,
-					"parameters": {
-						"object-to-create": "BaseEnemy",
-						"layer": "\"GameTest\"",
-						"x": "spawn_x",
-						"y": "spawn_y",
-						"create-hierarchy": true,
-						"template-name": "\"\""
-					}
-				}
-			],
-			"sid": 950428526554398
-		},
-		{
 			"eventType": "block",
 			"conditions": [
 				{
@@ -113,213 +71,29 @@
 						"120",
 						"300"
 					]
+				},
+				{
+					"callFunction": "InitEnemies",
+					"sid": 667209442706001
+				},
+				{
+					"callFunction": "SpawnPlayer",
+					"sid": 641598711359694,
+					"parameters": [
+						"SpawnX",
+						"SpawnY"
+					]
+				},
+				{
+					"callFunction": "SpawnNPC",
+					"sid": 694257538720434,
+					"parameters": [
+						"80",
+						"240"
+					]
 				}
 			],
-			"sid": 323895198121661,
-			"children": [
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "for-each",
-							"objectClass": "System",
-							"sid": 335472775376311,
-							"parameters": {
-								"object": "BaseEnemy"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "start-timer",
-							"objectClass": "BaseEnemy",
-							"sid": 806291709452575,
-							"behaviorType": "Timer",
-							"parameters": {
-								"duration": "random(2, 4)",
-								"type": "once",
-								"tag": "\"Update\""
-							}
-						}
-					],
-					"sid": 731433451044783
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-timer",
-					"objectClass": "BaseEnemy",
-					"sid": 587979426950395,
-					"behaviorType": "Timer",
-					"parameters": {
-						"tag": "\"Update\""
-					}
-				}
-			],
-			"actions": [],
-			"sid": 498391254510460,
-			"children": [
-				{
-					"eventType": "variable",
-					"name": "random_num",
-					"type": "number",
-					"initialValue": "-1",
-					"comment": "",
-					"isStatic": false,
-					"isConstant": false,
-					"sid": 474982689395470
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "set-eventvar-value",
-							"objectClass": "System",
-							"sid": 414605914479921,
-							"parameters": {
-								"variable": "random_num",
-								"value": "random(0,1)"
-							}
-						}
-					],
-					"sid": 129276414137757
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 339414309325234,
-							"parameters": {
-								"variable": "random_num",
-								"comparison": 2,
-								"value": "0.25"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "BaseEnemy",
-							"sid": 309973238525975,
-							"behaviorType": "TileMovement",
-							"parameters": {
-								"control": "up"
-							}
-						}
-					],
-					"sid": 502472204635276
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 182815360814439
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 842582452491390,
-							"parameters": {
-								"variable": "random_num",
-								"comparison": 2,
-								"value": "0.5"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "BaseEnemy",
-							"sid": 291936710448673,
-							"behaviorType": "TileMovement",
-							"parameters": {
-								"control": "left"
-							}
-						}
-					],
-					"sid": 236747226119950
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 903997820725802
-						},
-						{
-							"id": "compare-eventvar",
-							"objectClass": "System",
-							"sid": 351917953394895,
-							"parameters": {
-								"variable": "random_num",
-								"comparison": 2,
-								"value": "0.75"
-							}
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "BaseEnemy",
-							"sid": 501323419150679,
-							"behaviorType": "TileMovement",
-							"parameters": {
-								"control": "down"
-							}
-						}
-					],
-					"sid": 252997476911886
-				},
-				{
-					"eventType": "block",
-					"conditions": [
-						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 356876672185825
-						}
-					],
-					"actions": [
-						{
-							"id": "simulate-control",
-							"objectClass": "BaseEnemy",
-							"sid": 764591520072485,
-							"behaviorType": "TileMovement",
-							"parameters": {
-								"control": "right"
-							}
-						}
-					],
-					"sid": 332577997311627
-				},
-				{
-					"eventType": "block",
-					"conditions": [],
-					"actions": [
-						{
-							"id": "start-timer",
-							"objectClass": "BaseEnemy",
-							"sid": 460988073866241,
-							"behaviorType": "Timer",
-							"parameters": {
-								"duration": "random(2, 4)",
-								"type": "once",
-								"tag": "\"Update\""
-							}
-						}
-					],
-					"sid": 912226891356616
-				}
-			]
+			"sid": 323895198121661
 		},
 		{
 			"eventType": "block",
@@ -327,14 +101,14 @@
 				{
 					"id": "every-tick",
 					"objectClass": "System",
-					"sid": 236242911301578
+					"sid": 213707866715610
 				}
 			],
 			"actions": [
 				{
 					"id": "set-position",
 					"objectClass": "2DCamera",
-					"sid": 192849379840749,
+					"sid": 229566998128775,
 					"parameters": {
 						"x": "lerp(2DCamera.X, BasePlayer.X, CurrentCameraLerp)",
 						"y": "lerp(2DCamera.Y, BasePlayer.Y, CurrentCameraLerp)"
@@ -343,7 +117,7 @@
 				{
 					"id": "set-position",
 					"objectClass": "PlayerArt",
-					"sid": 159371585917827,
+					"sid": 454947031828948,
 					"parameters": {
 						"x": "BasePlayer.X",
 						"y": "BasePlayer.Y - CurrentJumpOffset"
@@ -352,356 +126,1286 @@
 				{
 					"id": "set-eventvar-value",
 					"objectClass": "System",
-					"sid": 853847779433580,
+					"sid": 180694102156150,
 					"parameters": {
 						"variable": "CurrentJumpOffset",
 						"value": "PlatformSimFloor.Y - PlatformSimPlayer.Y"
 					}
+				},
+				{
+					"callFunction": "UpdateEnemies",
+					"sid": 400356863872176
+				},
+				{
+					"callFunction": "UpdateDebugTexts",
+					"sid": 907693986643544
 				}
 			],
-			"sid": 504003221194673,
+			"sid": 159047802893920
+		},
+		{
+			"eventType": "variable",
+			"name": "SpawnX",
+			"type": "number",
+			"initialValue": "192",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 797962910566927
+		},
+		{
+			"eventType": "variable",
+			"name": "SpawnY",
+			"type": "number",
+			"initialValue": "208",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 223322819263048
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "SpawnPlayer",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 613594899470966
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 738683873555297
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 416502490997456,
+							"parameters": {
+								"object-to-create": "BasePlayer",
+								"layer": "\"GameTest\"",
+								"x": "x",
+								"y": "y",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 803842671045284
+				}
+			],
+			"sid": 661958588697651
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "NPC",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 281950691051997,
+							"id": "is-overlapping-another-object",
+							"objectClass": "BasePlayer",
+							"sid": 406908065245376,
 							"parameters": {
-								"object": "Text",
-								"expression": "Text.TemplateName",
-								"comparison": 0,
-								"value": "\"Debug_FPSCounter\""
+								"object": "InteractRange"
 							}
-						}
-					],
-					"actions": [
+						},
 						{
-							"id": "set-text",
-							"objectClass": "Text",
-							"sid": 343172432143742,
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 490701414654864,
 							"parameters": {
-								"text": "fps"
-							}
+								"layer": "\"HUD_Dialog\""
+							},
+							"isInverted": true
 						}
 					],
-					"sid": 595724070839860
+					"actions": [],
+					"sid": 725546363717872,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-parent",
+									"objectClass": "InteractRange",
+									"sid": 484917103102445,
+									"parameters": {
+										"parent": "BaseNPC",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 302149116739222,
+									"parameters": {
+										"layer": "\"HUD_Dialog\"",
+										"visibility": "visible"
+									}
+								},
+								{
+									"id": "set-layout-scale",
+									"objectClass": "System",
+									"sid": 417145282850598,
+									"disabled": true,
+									"parameters": {
+										"scale": "1.5"
+									}
+								}
+							],
+							"sid": 307804903532677,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 752040195960390,
+											"parameters": {
+												"object": "Text",
+												"expression": "Text.TemplateName",
+												"comparison": 0,
+												"value": "\"DialogText\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "typewriter-text",
+											"objectClass": "Text",
+											"sid": 998621094661548,
+											"parameters": {
+												"text": "BaseNPC.DialogLineTest",
+												"duration": "len(BaseNPC.DialogLineTest) * 0.04"
+											}
+										}
+									],
+									"sid": 428325566040885
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 959540092277400,
+											"parameters": {
+												"object": "Text",
+												"expression": "Text.TemplateName",
+												"comparison": 0,
+												"value": "\"DialogNameL\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 232367954565582,
+											"parameters": {
+												"text": "\"Player\""
+											}
+										}
+									],
+									"sid": 131025683065513
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 624116060795331,
+											"parameters": {
+												"object": "Text",
+												"expression": "Text.TemplateName",
+												"comparison": 0,
+												"value": "\"DialogNameR\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "Text",
+											"sid": 729449450395820,
+											"parameters": {
+												"text": "BaseNPC.NPCName"
+											}
+										}
+									],
+									"sid": 732583486006568
+								}
+							]
+						}
+					]
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "pick-by-comparison",
-							"objectClass": "System",
-							"sid": 871100578594196,
+							"id": "is-overlapping-another-object",
+							"objectClass": "BasePlayer",
+							"sid": 493129267598179,
 							"parameters": {
-								"object": "Text",
-								"expression": "Text.TemplateName",
-								"comparison": 0,
-								"value": "\"Debug_CurrentJumpOffset\""
+								"object": "InteractRange"
+							},
+							"isInverted": true
+						},
+						{
+							"id": "layer-is-visible",
+							"objectClass": "System",
+							"sid": 230237284207019,
+							"parameters": {
+								"layer": "\"HUD_Dialog\""
 							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-text",
-							"objectClass": "Text",
-							"sid": 311910164982000,
+							"id": "set-layout-scale",
+							"objectClass": "System",
+							"sid": 705125961222913,
+							"disabled": true,
 							"parameters": {
-								"text": "floor(CurrentJumpOffset)"
+								"scale": "1"
+							}
+						},
+						{
+							"id": "set-layer-visible",
+							"objectClass": "System",
+							"sid": 628991204437274,
+							"parameters": {
+								"layer": "\"HUD_Dialog\"",
+								"visibility": "invisible"
 							}
 						}
 					],
-					"sid": 523741183339937
+					"sid": 137501587002442
+				},
+				{
+					"functionName": "SpawnNPC",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "x",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 829943118363645
+						},
+						{
+							"name": "y",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 727273741215570
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 145204969754172,
+							"parameters": {
+								"object-to-create": "BaseNPC",
+								"layer": "\"GameTest\"",
+								"x": "x",
+								"y": "y",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 416711344141598
+				},
+				{
+					"functionName": "UpdateNPCs",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 578722211676423,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 180765565066552,
+									"parameters": {
+										"object": "BaseNPC"
+									}
+								},
+								{
+									"id": "pick-children",
+									"objectClass": "BaseNPC",
+									"sid": 911634856318064,
+									"parameters": {
+										"child": "NPCArt",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "NPCArt",
+									"sid": 781390988263184,
+									"parameters": {
+										"x": "lerp(Self.X, BaseNPC.X, EnemyMovementLerp)",
+										"y": "lerp(Self.Y, BaseNPC.Y, EnemyMovementLerp)"
+									}
+								}
+							],
+							"sid": 980497038902650
+						}
+					]
+				}
+			],
+			"sid": 574590694274813
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Map",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "BasePlayer",
+							"sid": 889602078425832,
+							"parameters": {
+								"object": "MapTransitor"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 691955942140532,
+							"parameters": {
+								"variable": "SpawnX",
+								"value": "MapTransitor.GotoX"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 603189445730708,
+							"parameters": {
+								"variable": "SpawnY",
+								"value": "MapTransitor.GotoY"
+							}
+						},
+						{
+							"id": "go-to-layout-by-name",
+							"objectClass": "System",
+							"sid": 621314540342079,
+							"parameters": {
+								"layout": "MapTransitor.GotoLayout"
+							}
+						}
+					],
+					"sid": 761191892077283
+				}
+			],
+			"sid": 785017649402965
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Enemy",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"functionName": "EnterBattlePhase",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "BaseEnemy",
+							"sid": 440870407640603,
+							"parameters": {
+								"instance-variable": "BattleActive",
+								"value": "false"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 327879737687470,
+							"parameters": {
+								"variable": "SpawnX",
+								"value": "BasePlayer.X"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 828800192024150,
+							"parameters": {
+								"variable": "SpawnY",
+								"value": "BasePlayer.Y"
+							}
+						},
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 512307630142624,
+							"parameters": {
+								"layout": "BattleTest"
+							}
+						},
+						{
+							"id": "destroy",
+							"objectClass": "BaseEnemy",
+							"sid": 496795985483248,
+							"disabled": true
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "BaseEnemy",
+							"sid": 304335294807487,
+							"parameters": {
+								"frame-number": "1"
+							}
+						}
+					],
+					"sid": 372556841243654
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "for-each",
-							"objectClass": "System",
-							"sid": 188548859263183,
+							"id": "on-collision-with-another-object",
+							"objectClass": "BasePlayer",
+							"sid": 801822390179090,
 							"parameters": {
 								"object": "BaseEnemy"
 							}
 						},
 						{
-							"id": "pick-children",
+							"id": "is-boolean-instance-variable-set",
 							"objectClass": "BaseEnemy",
-							"sid": 555738217667640,
+							"sid": 718767217927829,
 							"parameters": {
-								"child": "EnemyArt",
-								"which": "own"
+								"instance-variable": "BattleActive"
 							}
+						},
+						{
+							"id": "is-on-floor",
+							"objectClass": "PlatformSimPlayer",
+							"sid": 193966172195752,
+							"behaviorType": "Platform"
 						}
 					],
 					"actions": [
 						{
-							"id": "set-position",
-							"objectClass": "EnemyArt",
-							"sid": 495234171938842,
+							"callFunction": "EnterBattlePhase",
+							"sid": 508277374688997
+						}
+					],
+					"sid": 201495686826883
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-landed",
+							"objectClass": "PlatformSimPlayer",
+							"sid": 278159271678607,
+							"behaviorType": "Platform"
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "BasePlayer",
+							"sid": 514769237734906,
 							"parameters": {
-								"x": "lerp(Self.X, BaseEnemy.X, EnemyMovementLerp)",
-								"y": "lerp(Self.Y, BaseEnemy.Y, EnemyMovementLerp)"
+								"object": "BaseEnemy"
 							}
 						}
 					],
-					"sid": 813974359931651
-				}
-			]
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-changed",
-					"objectClass": "SliderBar",
-					"sid": 702887780851465
+					"actions": [],
+					"sid": 423198126205837,
+					"children": [
+						{
+							"eventType": "comment",
+							"text": "Player is above the enemy"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-y",
+									"objectClass": "BasePlayer",
+									"sid": 755911166714632,
+									"parameters": {
+										"comparison": 2,
+										"y-co-ordinate": "BaseEnemy.Y - 16"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "BaseEnemy",
+									"sid": 643461262586855
+								}
+							],
+							"sid": 850345173034267
+						},
+						{
+							"eventType": "comment",
+							"text": "Player is bellow the enemy"
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 970391700923863
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "EnterBattlePhase",
+									"sid": 448322006043695
+								}
+							],
+							"sid": 896230281390523
+						}
+					]
 				},
 				{
-					"id": "compare-two-values",
-					"objectClass": "System",
-					"sid": 777780826640430,
-					"parameters": {
-						"first-value": "SliderBar.TemplateName",
-						"comparison": 0,
-						"second-value": "\"Debug_CurrentCameraLerp\""
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-eventvar-value",
-					"objectClass": "System",
-					"sid": 616709342843290,
-					"parameters": {
-						"variable": "CurrentCameraLerp",
-						"value": "SliderBar.Value"
-					}
-				}
-			],
-			"sid": 694294123718197
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-changing",
-					"objectClass": "SliderBar",
-					"sid": 600286747651908
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "BasePlayer",
+							"sid": 745143105509112,
+							"parameters": {
+								"object": "BaseEnemy"
+							},
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-instvar",
+							"objectClass": "BaseEnemy",
+							"sid": 730476685039173,
+							"parameters": {
+								"instance-variable": "BattleActive",
+								"value": "true"
+							}
+						},
+						{
+							"id": "set-animation-frame",
+							"objectClass": "BaseEnemy",
+							"sid": 336632577153976,
+							"parameters": {
+								"frame-number": "0"
+							}
+						}
+					],
+					"sid": 166412974217644
 				},
 				{
-					"id": "compare-two-values",
-					"objectClass": "System",
-					"sid": 396831702690321,
-					"parameters": {
-						"first-value": "SliderBar.TemplateName",
-						"comparison": 0,
-						"second-value": "\"Debug_CurrentCameraLerp\""
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-timer",
+							"objectClass": "BaseEnemy",
+							"sid": 390675523148274,
+							"behaviorType": "Timer",
+							"parameters": {
+								"tag": "\"Update\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 782275423553081,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "random_num",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 287407294511004
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 959260823069323,
+									"parameters": {
+										"variable": "random_num",
+										"value": "random(0,1)"
+									}
+								}
+							],
+							"sid": 924561203206839
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 771531129818716,
+									"parameters": {
+										"variable": "random_num",
+										"comparison": 2,
+										"value": "0.25"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 704089098005475,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "BaseEnemy",
+											"sid": 349344909160064,
+											"parameters": {
+												"object": "BaseNPC",
+												"offset-x": "0",
+												"offset-y": "-32"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "simulate-control",
+											"objectClass": "BaseEnemy",
+											"sid": 483038467040543,
+											"behaviorType": "TileMovement",
+											"parameters": {
+												"control": "up"
+											}
+										}
+									],
+									"sid": 562980338608115
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 298877038176083
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 277553293607310,
+									"parameters": {
+										"variable": "random_num",
+										"comparison": 2,
+										"value": "0.5"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 611278404110722,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "BaseEnemy",
+											"sid": 425309302215192,
+											"parameters": {
+												"object": "BaseNPC",
+												"offset-x": "-32",
+												"offset-y": "0"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "simulate-control",
+											"objectClass": "BaseEnemy",
+											"sid": 379123015076878,
+											"behaviorType": "TileMovement",
+											"parameters": {
+												"control": "left"
+											}
+										}
+									],
+									"sid": 678671174666610
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 777166248653618
+								},
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 967128697999717,
+									"parameters": {
+										"variable": "random_num",
+										"comparison": 2,
+										"value": "0.75"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 662438953978511,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "BaseEnemy",
+											"sid": 291815492379409,
+											"parameters": {
+												"object": "BaseNPC",
+												"offset-x": "0",
+												"offset-y": "32"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "simulate-control",
+											"objectClass": "BaseEnemy",
+											"sid": 354550937149433,
+											"behaviorType": "TileMovement",
+											"parameters": {
+												"control": "down"
+											}
+										}
+									],
+									"sid": 462623155338009
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 827765796448805
+								}
+							],
+							"actions": [],
+							"sid": 888767327911979,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-overlapping-at-offset",
+											"objectClass": "BaseEnemy",
+											"sid": 829707027703685,
+											"parameters": {
+												"object": "BaseNPC",
+												"offset-x": "32",
+												"offset-y": "0"
+											},
+											"isInverted": true
+										}
+									],
+									"actions": [
+										{
+											"id": "simulate-control",
+											"objectClass": "BaseEnemy",
+											"sid": 723849358143132,
+											"behaviorType": "TileMovement",
+											"parameters": {
+												"control": "right"
+											}
+										}
+									],
+									"sid": 723001189414788
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "start-timer",
+									"objectClass": "BaseEnemy",
+									"sid": 436019953932260,
+									"behaviorType": "Timer",
+									"parameters": {
+										"duration": "random(2, 4)",
+										"type": "once",
+										"tag": "\"Update\""
+									}
+								}
+							],
+							"sid": 608272240721365
+						}
+					]
 				},
 				{
-					"id": "pick-by-comparison",
-					"objectClass": "System",
-					"sid": 916645225735445,
-					"parameters": {
-						"object": "Text",
-						"expression": "Text.TemplateName",
-						"comparison": 0,
-						"value": "\"Debug_CurrentCameraLerp\""
-					}
-				}
-			],
-			"actions": [
+					"functionName": "InitEnemies",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 160604932933923,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 447678731829872,
+									"parameters": {
+										"object": "BaseEnemy"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "start-timer",
+									"objectClass": "BaseEnemy",
+									"sid": 457970480520800,
+									"behaviorType": "Timer",
+									"parameters": {
+										"duration": "random(2, 4)",
+										"type": "once",
+										"tag": "\"Update\""
+									}
+								}
+							],
+							"sid": 647871781651719
+						}
+					]
+				},
 				{
-					"id": "set-text",
-					"objectClass": "Text",
-					"sid": 328018251780865,
-					"parameters": {
-						"text": "SliderBar.Value"
-					}
+					"functionName": "SpawnEnemy",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "spawn_x",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 688456415968001
+						},
+						{
+							"name": "spawn_y",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 182758624636922
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "create-object",
+							"objectClass": "System",
+							"sid": 323066871599660,
+							"parameters": {
+								"object-to-create": "BaseEnemy",
+								"layer": "\"GameTest\"",
+								"x": "spawn_x",
+								"y": "spawn_y",
+								"create-hierarchy": true,
+								"template-name": "\"\""
+							}
+						}
+					],
+					"sid": 283799771628672
+				},
+				{
+					"functionName": "UpdateEnemies",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 989507905436447,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 447809370294659,
+									"parameters": {
+										"object": "BaseEnemy"
+									}
+								},
+								{
+									"id": "pick-children",
+									"objectClass": "BaseEnemy",
+									"sid": 377909201652412,
+									"parameters": {
+										"child": "EnemyArt",
+										"which": "own"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-position",
+									"objectClass": "EnemyArt",
+									"sid": 689116194340721,
+									"parameters": {
+										"x": "lerp(Self.X, BaseEnemy.X, EnemyMovementLerp)",
+										"y": "lerp(Self.Y, BaseEnemy.Y, EnemyMovementLerp)"
+									}
+								}
+							],
+							"sid": 416956149297771
+						}
+					]
 				}
 			],
-			"sid": 814545261242084
+			"sid": 817983312748385
 		},
 		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 321474641133421,
-					"parameters": {
-						"key": 71
-					}
-				}
-			],
-			"actions": [],
-			"sid": 454147933639765,
+			"eventType": "group",
+			"disabled": false,
+			"title": "Controls",
+			"description": "",
+			"isActiveOnStart": true,
 			"children": [
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "layer-is-visible",
-							"objectClass": "System",
-							"sid": 163139812357304,
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 734675776997046,
 							"parameters": {
-								"layer": "\"DebugTest\""
+								"key": 71
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 172000288020953,
+					"children": [
 						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 877141832461227,
-							"parameters": {
-								"layer": "\"DebugTest\"",
-								"visibility": "invisible"
-							}
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "layer-is-visible",
+									"objectClass": "System",
+									"sid": 199533766619617,
+									"parameters": {
+										"layer": "\"Debug\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 358791973025735,
+									"parameters": {
+										"layer": "\"Debug\"",
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 856220985396782
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 400876278084953
+								}
+							],
+							"actions": [
+								{
+									"id": "set-layer-visible",
+									"objectClass": "System",
+									"sid": 713480652971105,
+									"parameters": {
+										"layer": "\"Debug\"",
+										"visibility": "visible"
+									}
+								}
+							],
+							"sid": 779094503529769
 						}
-					],
-					"sid": 815465854512760
+					]
 				},
 				{
 					"eventType": "block",
 					"conditions": [
 						{
-							"id": "else",
-							"objectClass": "System",
-							"sid": 939177492107617
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 599383096449376,
+							"parameters": {
+								"key": 32
+							}
 						}
 					],
 					"actions": [
 						{
-							"id": "set-layer-visible",
-							"objectClass": "System",
-							"sid": 785082574318814,
+							"id": "simulate-control",
+							"objectClass": "PlatformSimPlayer",
+							"sid": 219083447741533,
+							"behaviorType": "Platform",
 							"parameters": {
-								"layer": "\"DebugTest\"",
-								"visibility": "visible"
+								"control": "jump"
 							}
 						}
 					],
-					"sid": 789279301833793
+					"sid": 567161834462726
 				}
-			]
+			],
+			"sid": 187908895224425
 		},
 		{
-			"eventType": "block",
-			"conditions": [
+			"eventType": "group",
+			"disabled": false,
+			"title": "Debugging",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
 				{
-					"id": "on-key-pressed",
-					"objectClass": "Keyboard",
-					"sid": 970135348960843,
-					"parameters": {
-						"key": 32
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "simulate-control",
-					"objectClass": "PlatformSimPlayer",
-					"sid": 193948163958814,
-					"behaviorType": "Platform",
-					"parameters": {
-						"control": "jump"
-					}
-				}
-			],
-			"sid": 692882340809913
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "on-collision-with-another-object",
-					"objectClass": "BasePlayer",
-					"sid": 772604927990931,
-					"parameters": {
-						"object": "BaseEnemy"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-changed",
+							"objectClass": "SliderBar",
+							"sid": 807662092567926
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 317004515329085,
+							"parameters": {
+								"first-value": "SliderBar.TemplateName",
+								"comparison": 0,
+								"second-value": "\"Debug_CurrentCameraLerp\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 256996595655514,
+							"parameters": {
+								"variable": "CurrentCameraLerp",
+								"value": "SliderBar.Value"
+							}
+						}
+					],
+					"sid": 915539270271098
 				},
 				{
-					"id": "is-boolean-instance-variable-set",
-					"objectClass": "BaseEnemy",
-					"sid": 237749947132708,
-					"parameters": {
-						"instance-variable": "BattleActive"
-					}
-				}
-			],
-			"actions": [
-				{
-					"id": "set-boolean-instvar",
-					"objectClass": "BaseEnemy",
-					"sid": 506581657349082,
-					"parameters": {
-						"instance-variable": "BattleActive",
-						"value": "false"
-					}
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-changing",
+							"objectClass": "SliderBar",
+							"sid": 840694931020011
+						},
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 192496190665103,
+							"parameters": {
+								"first-value": "SliderBar.TemplateName",
+								"comparison": 0,
+								"second-value": "\"Debug_CurrentCameraLerp\""
+							}
+						},
+						{
+							"id": "pick-by-comparison",
+							"objectClass": "System",
+							"sid": 332934301728245,
+							"parameters": {
+								"object": "Text",
+								"expression": "Text.TemplateName",
+								"comparison": 0,
+								"value": "\"Debug_CurrentCameraLerp\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-text",
+							"objectClass": "Text",
+							"sid": 823660642188538,
+							"parameters": {
+								"text": "SliderBar.Value"
+							}
+						}
+					],
+					"sid": 718396281630522
 				},
 				{
-					"id": "go-to-layout",
-					"objectClass": "System",
-					"sid": 876438647574129,
-					"parameters": {
-						"layout": "BattleTest"
-					}
-				},
-				{
-					"id": "destroy",
-					"objectClass": "BaseEnemy",
-					"sid": 412945892186126,
-					"disabled": true
-				},
-				{
-					"id": "set-animation-frame",
-					"objectClass": "BaseEnemy",
-					"sid": 427133265260702,
-					"parameters": {
-						"frame-number": "1"
-					}
+					"functionName": "UpdateDebugTexts",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [],
+					"eventType": "function-block",
+					"conditions": [],
+					"actions": [],
+					"sid": 256192044362227,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 644325188923568,
+									"parameters": {
+										"object": "Text",
+										"expression": "Text.TemplateName",
+										"comparison": 0,
+										"value": "\"Debug_FPSCounter\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 208931161034549,
+									"parameters": {
+										"text": "fps"
+									}
+								}
+							],
+							"sid": 147035033426384
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 256641450656112,
+									"parameters": {
+										"object": "Text",
+										"expression": "Text.TemplateName",
+										"comparison": 0,
+										"value": "\"Debug_CurrentJumpOffset\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 956321603911554,
+									"parameters": {
+										"text": "floor(CurrentJumpOffset)"
+									}
+								}
+							],
+							"sid": 560968390923617
+						}
+					]
 				}
 			],
-			"sid": 594475062012025
-		},
-		{
-			"eventType": "block",
-			"conditions": [
-				{
-					"id": "is-overlapping-another-object",
-					"objectClass": "BasePlayer",
-					"sid": 616387047638519,
-					"parameters": {
-						"object": "BaseEnemy"
-					},
-					"isInverted": true
-				}
-			],
-			"actions": [
-				{
-					"id": "set-boolean-instvar",
-					"objectClass": "BaseEnemy",
-					"sid": 209302190160913,
-					"parameters": {
-						"instance-variable": "BattleActive",
-						"value": "true"
-					}
-				},
-				{
-					"id": "set-animation-frame",
-					"objectClass": "BaseEnemy",
-					"sid": 439913829604442,
-					"parameters": {
-						"frame-number": "0"
-					}
-				}
-			],
-			"sid": 937117438541186
+			"sid": 484834499556035
 		}
 	],
 	"sid": 645216574575648
