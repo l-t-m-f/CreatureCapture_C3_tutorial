@@ -176,10 +176,9 @@
 			"Pixels",
 			"MapTransitor",
 			"InteractRange",
-			"9patch",
+			"T_UIPanel_9patch",
 			"AJAX",
 			"Browser",
-			"LayoutNPCs",
 			"JsonRGB"
 		],
 		"subfolders": [
@@ -206,9 +205,22 @@
 			{
 				"items": [
 					"NPCArt",
-					"BaseNPC"
+					"BaseNPC",
+					"LayoutNPCs"
 				],
-				"subfolders": [],
+				"subfolders": [
+					{
+						"items": [
+							"NextDialogChoicesData",
+							"NextDialogData",
+							"ActiveNPCBucket",
+							"ActiveNPCStory",
+							"ActiveNPCPanel"
+						],
+						"subfolders": [],
+						"name": "Dialogs"
+					}
+				],
 				"name": "NPC"
 			}
 		]
@@ -364,6 +376,14 @@
 							"name": "todo.txt",
 							"type": "text/plain",
 							"sid": 847155913181870,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "souce_code.txt",
+							"type": "text/plain",
+							"sid": 392097755921071,
 							"file-info": {
 								"purpose": "none"
 							}

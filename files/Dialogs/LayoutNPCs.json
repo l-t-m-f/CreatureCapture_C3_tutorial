@@ -1,19 +1,246 @@
 {
-	"Layouts" : [
-	
-		{ "LayoutName" : "Overworld1_1",
-		  "NPCs" : [
-		
-			{ "CharacterName" : "Annie", "TileX" : 19, "TileY" : 11, "Color" : [255, 0, 0] },
-			{ "CharacterName" : "Rocky", "TileX" : 4, "TileY" : 4, "Color" : [0, 255, 0] } 
-		
-		]  },
-		{ "LayoutName" : "Overworld1_2",
-		  "NPCs" : [
-		
-			{ "CharacterName" : "Bob", "TileX" : 17, "TileY" : 19, "Color" : [0, 0, 255] }
-		
-		]  }
-	
+	"Layouts": [
+		{
+			"LayoutName": "Overworld1_1",
+			"NPCs": [
+				{
+					"CharacterName": "Annie",
+					"Color": [
+						255,
+						0,
+						0
+					],
+					"DialogTree": {
+						"Buckets": [
+							{
+								"Stories": [
+									{
+										"Panels": [
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													},													
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Hey, have you captured one of these things!",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					"TileX": 19,
+					"TileY": 11
+				},
+				{
+					"CharacterName": "Rocky",
+					"Color": [
+						0,
+						255,
+						0
+					],
+					"DialogTree": {
+						"Buckets": [
+							{
+								"Stories": [
+									{
+										"Panels": [
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													},													
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													},													
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "I eat rocks for breakfast, how about you?",
+												"Speaker": "Self"
+											}
+										]
+									},
+									{
+										"Panels": [
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					"TileX": 4,
+					"TileY": 4
+				}
+			]
+		},
+		{
+			"LayoutName": "Overworld1_2",
+			"NPCs": [
+				{
+					"CharacterName": "Bob",
+					"Color": [
+						0,
+						0,
+						255
+					],
+					"DialogTree": {
+						"Buckets": [
+							{
+								"Stories": [
+									{
+										"Panels": [
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "What's your favorite TV show, you ask?",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											}
+										]
+									},
+									{
+										"Panels": [
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											},
+											{
+												"Choices": [
+													{
+														"Action": "Close",
+														"Data": "",
+														"Text": "Choice1"
+													}
+												],
+												"Dialog": "Text blablabla",
+												"Speaker": "Self"
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					"TileX": 17,
+					"TileY": 19
+				}
+			]
+		}
 	]
 }

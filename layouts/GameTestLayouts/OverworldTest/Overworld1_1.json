@@ -1355,7 +1355,7 @@
 			"subLayers": [],
 			"instances": [
 				{
-					"type": "9patch",
+					"type": "T_UIPanel_9patch",
 					"properties": {
 						"left-margin": 16,
 						"right-margin": 16,
@@ -1367,12 +1367,169 @@
 						"origin": "top-left",
 						"seams": "overlap"
 					},
-					"uid": 46,
+					"uid": 60,
 					"instanceVariables": {},
 					"behaviors": {},
+					"template": {
+						"mode": "template",
+						"templateName": "DialogBackground",
+						"sourceTemplateName": "",
+						"components": [
+							{
+								"id": "plugin",
+								"component": [
+									{
+										"key": "plugin",
+										"state": [
+											[
+												"left-margin",
+												true
+											],
+											[
+												"right-margin",
+												true
+											],
+											[
+												"top-margin",
+												true
+											],
+											[
+												"bottom-margin",
+												true
+											],
+											[
+												"edges",
+												true
+											],
+											[
+												"fill",
+												true
+											],
+											[
+												"initially-visible",
+												true
+											],
+											[
+												"origin",
+												true
+											],
+											[
+												"seams",
+												true
+											]
+										]
+									}
+								]
+							},
+							{
+								"id": "instance-variable",
+								"component": [
+									{
+										"key": "instance-variable",
+										"state": []
+									}
+								]
+							},
+							{
+								"id": "behavior",
+								"component": []
+							},
+							{
+								"id": "effect",
+								"component": []
+							},
+							{
+								"id": "world-instance",
+								"component": [
+									{
+										"key": "world-instance",
+										"state": [
+											[
+												"x",
+												false
+											],
+											[
+												"y",
+												false
+											],
+											[
+												"z",
+												true
+											],
+											[
+												"w",
+												true
+											],
+											[
+												"h",
+												true
+											],
+											[
+												"a",
+												true
+											],
+											[
+												"o",
+												true
+											],
+											[
+												"c",
+												true
+											],
+											[
+												"sx",
+												true
+											],
+											[
+												"sy",
+												true
+											],
+											[
+												"bm",
+												true
+											],
+											[
+												"twpx",
+												true
+											],
+											[
+												"twpy",
+												true
+											],
+											[
+												"twpz",
+												true
+											],
+											[
+												"twpw",
+												true
+											],
+											[
+												"twph",
+												true
+											],
+											[
+												"twpa",
+												true
+											],
+											[
+												"dwp",
+												true
+											],
+											[
+												"ssm",
+												true
+											]
+										]
+									}
+								]
+							}
+						],
+						"replicasUIDs": null
+					},
 					"world": {
 						"x": 16,
-						"y": 240,
+						"y": 224,
 						"width": 592,
 						"height": 100,
 						"originX": 0,
@@ -1592,7 +1749,7 @@
 					},
 					"world": {
 						"x": 32,
-						"y": 256,
+						"y": 240,
 						"width": 560,
 						"height": 64,
 						"originX": 0,
@@ -1812,7 +1969,7 @@
 					},
 					"world": {
 						"x": 32,
-						"y": 224,
+						"y": 208,
 						"width": 96,
 						"height": 32,
 						"originX": 0,
@@ -2032,7 +2189,7 @@
 					},
 					"world": {
 						"x": 592,
-						"y": 224,
+						"y": 208,
 						"width": 112,
 						"height": 32,
 						"originX": 1,
@@ -2155,6 +2312,36 @@
 			"type": "JsonRGB",
 			"properties": {},
 			"uid": 54,
+			"instanceVariables": {}
+		},
+		{
+			"type": "NextDialogData",
+			"properties": {},
+			"uid": 55,
+			"instanceVariables": {}
+		},
+		{
+			"type": "NextDialogChoicesData",
+			"properties": {},
+			"uid": 56,
+			"instanceVariables": {}
+		},
+		{
+			"type": "ActiveNPCBucket",
+			"properties": {},
+			"uid": 57,
+			"instanceVariables": {}
+		},
+		{
+			"type": "ActiveNPCStory",
+			"properties": {},
+			"uid": 58,
+			"instanceVariables": {}
+		},
+		{
+			"type": "ActiveNPCPanel",
+			"properties": {},
+			"uid": 59,
 			"instanceVariables": {}
 		}
 	],

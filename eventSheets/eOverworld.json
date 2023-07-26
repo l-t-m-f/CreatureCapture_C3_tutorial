@@ -381,6 +381,16 @@
 									"sid": 892045590818154
 								},
 								{
+									"eventType": "variable",
+									"name": "next_npc_dialog_tree",
+									"type": "string",
+									"initialValue": "NULL",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 169605015400758
+								},
+								{
 									"eventType": "block",
 									"conditions": [
 										{
@@ -432,6 +442,15 @@
 											}
 										},
 										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 924302579280105,
+											"parameters": {
+												"variable": "next_npc_dialog_tree",
+												"value": "LayoutNPCs.GetAsCompactString(\"Layouts.\"&loopindex(\"i\")&\".NPCs.\"&loopindex(\"j\")&\".DialogTree\")"
+											}
+										},
+										{
 											"id": "log",
 											"objectClass": "Browser",
 											"sid": 451587135582982,
@@ -468,13 +487,23 @@
 											}
 										},
 										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 713716943799200,
+											"parameters": {
+												"type": "warn",
+												"message": "Functions.UtilDataStringBuilder(\"Next NPCs dialog tree data: \", next_npc_dialog_tree, \"\")"
+											}
+										},
+										{
 											"callFunction": "SpawnNPC",
-											"sid": 398772235689507,
+											"sid": 633584890186894,
 											"parameters": [
 												"next_npc_name",
 												"next_npc_spawn_tile_x",
 												"next_npc_spawn_tile_y",
-												"next_npc_color"
+												"next_npc_color",
+												"next_npc_dialog_tree"
 											]
 										}
 									],
@@ -613,100 +642,14 @@
 									}
 								},
 								{
-									"id": "set-layout-scale",
-									"objectClass": "System",
-									"sid": 417145282850598,
-									"disabled": true,
-									"parameters": {
-										"scale": "1.5"
-									}
+									"callFunction": "LoadNPCDialog",
+									"sid": 567973042892705,
+									"parameters": [
+										"BaseNPC.UID"
+									]
 								}
 							],
-							"sid": 307804903532677,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 752040195960390,
-											"parameters": {
-												"object": "Text",
-												"expression": "Text.TemplateName",
-												"comparison": 0,
-												"value": "\"DialogText\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "typewriter-text",
-											"objectClass": "Text",
-											"sid": 998621094661548,
-											"parameters": {
-												"text": "BaseNPC.DialogLineTest",
-												"duration": "len(BaseNPC.DialogLineTest) * 0.04"
-											}
-										}
-									],
-									"sid": 428325566040885
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 959540092277400,
-											"parameters": {
-												"object": "Text",
-												"expression": "Text.TemplateName",
-												"comparison": 0,
-												"value": "\"DialogNameL\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-text",
-											"objectClass": "Text",
-											"sid": 232367954565582,
-											"parameters": {
-												"text": "\"Player\""
-											}
-										}
-									],
-									"sid": 131025683065513
-								},
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 624116060795331,
-											"parameters": {
-												"object": "Text",
-												"expression": "Text.TemplateName",
-												"comparison": 0,
-												"value": "\"DialogNameR\""
-											}
-										}
-									],
-									"actions": [
-										{
-											"id": "set-text",
-											"objectClass": "Text",
-											"sid": 729449450395820,
-											"parameters": {
-												"text": "BaseNPC.NPCName"
-											}
-										}
-									],
-									"sid": 732583486006568
-								}
-							]
+							"sid": 307804903532677
 						}
 					]
 				},
@@ -732,15 +675,6 @@
 						}
 					],
 					"actions": [
-						{
-							"id": "set-layout-scale",
-							"objectClass": "System",
-							"sid": 705125961222913,
-							"disabled": true,
-							"parameters": {
-								"scale": "1"
-							}
-						},
 						{
 							"id": "set-layer-visible",
 							"objectClass": "System",
@@ -788,6 +722,13 @@
 							"initialValue": "NULL",
 							"comment": "",
 							"sid": 320406990294232
+						},
+						{
+							"name": "json_dialog_tree_data",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"sid": 931133324494749
 						}
 					],
 					"eventType": "function-block",
@@ -796,7 +737,7 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 733183816206556,
+							"sid": 561068158871928,
 							"parameters": {
 								"object-to-create": "BaseNPC",
 								"layer": "\"GameTest\"",
@@ -809,14 +750,23 @@
 						{
 							"id": "set-instvar-value",
 							"objectClass": "BaseNPC",
-							"sid": 961692330781037,
+							"sid": 882541754241280,
 							"parameters": {
-								"instance-variable": "NPCName",
+								"instance-variable": "Name",
 								"value": "name"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "BaseNPC",
+							"sid": 805174561636349,
+							"parameters": {
+								"instance-variable": "DialogTreeData",
+								"value": "json_dialog_tree_data"
 							}
 						}
 					],
-					"sid": 416711344141598,
+					"sid": 907716728890738,
 					"children": [
 						{
 							"eventType": "block",
@@ -824,7 +774,7 @@
 								{
 									"id": "pick-children",
 									"objectClass": "BaseNPC",
-									"sid": 512034463811397,
+									"sid": 715934498584477,
 									"parameters": {
 										"child": "Text",
 										"which": "own"
@@ -833,7 +783,7 @@
 								{
 									"id": "compare-two-values",
 									"objectClass": "System",
-									"sid": 352971992269580,
+									"sid": 187888374281392,
 									"parameters": {
 										"first-value": "Text.TemplateName",
 										"comparison": 0,
@@ -845,13 +795,13 @@
 								{
 									"id": "set-text",
 									"objectClass": "Text",
-									"sid": 955132685943665,
+									"sid": 969098584231519,
 									"parameters": {
-										"text": "BaseNPC.NPCName"
+										"text": "BaseNPC.Name"
 									}
 								}
 							],
-							"sid": 455279945454552
+							"sid": 545418507688991
 						},
 						{
 							"eventType": "variable",
@@ -861,7 +811,7 @@
 							"comment": "",
 							"isStatic": false,
 							"isConstant": false,
-							"sid": 612640387229625
+							"sid": 350684475974293
 						},
 						{
 							"eventType": "variable",
@@ -871,7 +821,7 @@
 							"comment": "",
 							"isStatic": false,
 							"isConstant": false,
-							"sid": 565432463425934
+							"sid": 798612505006663
 						},
 						{
 							"eventType": "variable",
@@ -881,7 +831,7 @@
 							"comment": "",
 							"isStatic": false,
 							"isConstant": false,
-							"sid": 776922215209117
+							"sid": 131562251249303
 						},
 						{
 							"eventType": "block",
@@ -889,7 +839,7 @@
 								{
 									"id": "compare-eventvar",
 									"objectClass": "System",
-									"sid": 208202682248233,
+									"sid": 891154026926987,
 									"parameters": {
 										"variable": "json_rgb",
 										"comparison": 1,
@@ -901,7 +851,7 @@
 								{
 									"id": "parse",
 									"objectClass": "JsonRGB",
-									"sid": 890424428698994,
+									"sid": 801108444221148,
 									"parameters": {
 										"data": "json_rgb"
 									}
@@ -909,7 +859,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 190472503383849,
+									"sid": 873543252267420,
 									"parameters": {
 										"variable": "r",
 										"value": "JsonRGB.Get(\"0\")"
@@ -918,7 +868,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 734087203937179,
+									"sid": 267728074617355,
 									"parameters": {
 										"variable": "g",
 										"value": "JsonRGB.Get(\"1\")"
@@ -927,7 +877,7 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 688349179607104,
+									"sid": 122291438768669,
 									"parameters": {
 										"variable": "b",
 										"value": "JsonRGB.Get(\"2\")"
@@ -936,13 +886,519 @@
 								{
 									"id": "set-default-color",
 									"objectClass": "BaseNPC",
-									"sid": 685461433538558,
+									"sid": 427596928558446,
 									"parameters": {
 										"color": "rgbEx255(r, g, b)"
 									}
 								}
 							],
-							"sid": 368944595236018
+							"sid": 650851610254534
+						}
+					]
+				},
+				{
+					"functionName": "LoadNPCDialog",
+					"functionDescription": "",
+					"functionCategory": "",
+					"functionReturnType": "none",
+					"functionCopyPicked": false,
+					"functionIsAsync": false,
+					"functionParameters": [
+						{
+							"name": "uid",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"sid": 638308483291259
+						}
+					],
+					"eventType": "function-block",
+					"conditions": [
+						{
+							"id": "pick-by-unique-id",
+							"objectClass": "BaseNPC",
+							"sid": 308015435473290,
+							"parameters": {
+								"unique-id": "uid"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "parse",
+							"objectClass": "NextDialogData",
+							"sid": 490750302372714,
+							"parameters": {
+								"data": "BaseNPC.DialogTreeData"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 611319988812739,
+							"parameters": {
+								"type": "warn",
+								"message": "Functions.UtilDataStringBuilder(\"NPC loaded dialog data: \", BaseNPC.DialogTreeData, \"\")"
+							}
+						}
+					],
+					"sid": 310474184398206,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "active_npc_bucket_intermediate_json_data",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 449208962619675
+						},
+						{
+							"eventType": "variable",
+							"name": "active_npc_story_intermediate_json_data",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 586347450944141
+						},
+						{
+							"eventType": "variable",
+							"name": "active_npc_panel_intermediate_json_data",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 716246009849200
+						},
+						{
+							"eventType": "variable",
+							"name": "next_dialog_line",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 904653608742407
+						},
+						{
+							"eventType": "variable",
+							"name": "dialog_choice_count",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 453534764510655
+						},
+						{
+							"eventType": "variable",
+							"name": "dialog_choice_json_data",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 972551493818591
+						},
+						{
+							"eventType": "variable",
+							"name": "next_dialog_speaker_is_self",
+							"type": "boolean",
+							"initialValue": "false",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 148110037892680
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 138329842103733,
+									"parameters": {
+										"variable": "active_npc_bucket_intermediate_json_data",
+										"value": "NextDialogData.GetAsCompactString(\"Buckets.\"&BaseNPC.CurrentBucket)"
+									}
+								},
+								{
+									"id": "parse",
+									"objectClass": "ActiveNPCBucket",
+									"sid": 874502688456216,
+									"parameters": {
+										"data": "active_npc_bucket_intermediate_json_data"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 400961656824785,
+									"parameters": {
+										"variable": "active_npc_story_intermediate_json_data",
+										"value": "ActiveNPCBucket.GetAsCompactString(\"Stories.\"&BaseNPC.CurrentStory)"
+									}
+								},
+								{
+									"id": "parse",
+									"objectClass": "ActiveNPCStory",
+									"sid": 986184258937616,
+									"parameters": {
+										"data": "active_npc_story_intermediate_json_data"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 427126980191236,
+									"parameters": {
+										"variable": "active_npc_panel_intermediate_json_data",
+										"value": "ActiveNPCStory.GetAsCompactString(\"Panels.\"&BaseNPC.CurrentPanel)"
+									}
+								},
+								{
+									"id": "parse",
+									"objectClass": "ActiveNPCPanel",
+									"sid": 221106683813633,
+									"parameters": {
+										"data": "active_npc_panel_intermediate_json_data"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 158367623688954,
+									"parameters": {
+										"variable": "next_dialog_line",
+										"value": "ActiveNPCPanel.Get(\"Dialog\")"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 562694758187871,
+									"parameters": {
+										"variable": "dialog_choice_count",
+										"value": "int(ActiveNPCPanel.ArraySize(\"Choices\"))"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 447923675263717,
+									"parameters": {
+										"variable": "dialog_choice_json_data",
+										"value": "ActiveNPCPanel.GetAsCompactString(\"Choices\")"
+									}
+								}
+							],
+							"sid": 703794045074785,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-two-values",
+											"objectClass": "System",
+											"sid": 341411230679897,
+											"parameters": {
+												"first-value": "ActiveNPCPanel.Get(\"Speaker\")",
+												"comparison": 0,
+												"second-value": "\"Self\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 373524062699613,
+											"parameters": {
+												"variable": "next_dialog_speaker_is_self",
+												"value": "true"
+											}
+										}
+									],
+									"sid": 196353554051712
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 907243841752270,
+											"parameters": {
+												"object": "Text",
+												"expression": "Text.TemplateName",
+												"comparison": 0,
+												"value": "\"DialogText\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "typewriter-text",
+											"objectClass": "Text",
+											"sid": 184093273835792,
+											"parameters": {
+												"text": "next_dialog_line",
+												"duration": "len(next_dialog_line) * 0.04"
+											}
+										}
+									],
+									"sid": 889278129433960
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 874161841352861,
+											"parameters": {
+												"variable": "next_dialog_speaker_is_self"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 401517467667101,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 130354035681007,
+													"parameters": {
+														"object": "Text",
+														"expression": "Text.TemplateName",
+														"comparison": 0,
+														"value": "\"DialogNameR\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "Text",
+													"sid": 129740927183969,
+													"parameters": {
+														"text": "BaseNPC.Name"
+													}
+												},
+												{
+													"id": "set-visible",
+													"objectClass": "Text",
+													"sid": 101630800421116,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 137190425584369
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 501079925178581,
+													"parameters": {
+														"object": "Text",
+														"expression": "Text.TemplateName",
+														"comparison": 0,
+														"value": "\"DialogNameL\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Text",
+													"sid": 828652737759701,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												}
+											],
+											"sid": 906521185918004
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 270930217514806
+										}
+									],
+									"actions": [],
+									"sid": 802137981582035,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 272555014985019,
+													"parameters": {
+														"object": "Text",
+														"expression": "Text.TemplateName",
+														"comparison": 0,
+														"value": "\"DialogNameR\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-visible",
+													"objectClass": "Text",
+													"sid": 315224743786915,
+													"parameters": {
+														"visibility": "invisible"
+													}
+												}
+											],
+											"sid": 658010763719248
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 607776062362281,
+													"parameters": {
+														"object": "Text",
+														"expression": "Text.TemplateName",
+														"comparison": 0,
+														"value": "\"DialogNameL\""
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-text",
+													"objectClass": "Text",
+													"sid": 619816505733052,
+													"parameters": {
+														"text": "\"Player\""
+													}
+												},
+												{
+													"id": "set-visible",
+													"objectClass": "Text",
+													"sid": 800062507828812,
+													"parameters": {
+														"visibility": "visible"
+													}
+												}
+											],
+											"sid": 298895293998912
+										}
+									]
+								},
+								{
+									"eventType": "variable",
+									"name": "choice_position_dividor",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 385514274431245
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 680403704568454,
+											"parameters": {
+												"variable": "choice_position_dividor",
+												"value": "ViewportWidth(\"HUD_Dialog\")/dialog_choice_count"
+											}
+										}
+									],
+									"sid": 540250955510624
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-all",
+											"objectClass": "System",
+											"sid": 180259350201723,
+											"parameters": {
+												"object": "T_UIPanel_9patch"
+											}
+										},
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 259494021210189,
+											"parameters": {
+												"object": "T_UIPanel_9patch",
+												"expression": "T_UIPanel_9patch.TemplateName",
+												"comparison": 0,
+												"value": "\"DialogChoiceBackground\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "destroy",
+											"objectClass": "T_UIPanel_9patch",
+											"sid": 409464116068348
+										}
+									],
+									"sid": 223920376505323
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 326469633585926,
+											"parameters": {
+												"name": "\"i\"",
+												"start-index": "0",
+												"end-index": "dialog_choice_count-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 141437927351502,
+											"parameters": {
+												"object-to-create": "T_UIPanel_9patch",
+												"layer": "\"HUD_Dialog\"",
+												"x": "loopindex(\"i\") * choice_position_dividor + choice_position_dividor/2 - 64",
+												"y": "ViewportHeight(\"HUD_Dialog\")-64",
+												"create-hierarchy": true,
+												"template-name": "\"DialogChoiceBackground\""
+											}
+										}
+									],
+									"sid": 764627978039118
+								}
+							]
 						}
 					]
 				},

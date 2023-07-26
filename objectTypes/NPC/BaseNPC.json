@@ -5,6 +5,13 @@
 	"isGlobal": false,
 	"instanceVariables": [
 		{
+			"name": "Name",
+			"type": "string",
+			"desc": "",
+			"show": true,
+			"sid": 224413921177548
+		},
+		{
 			"name": "DialogLineTest",
 			"type": "string",
 			"desc": "",
@@ -12,11 +19,32 @@
 			"sid": 368791929565368
 		},
 		{
-			"name": "NPCName",
+			"name": "DialogTreeData",
 			"type": "string",
 			"desc": "",
-			"show": true,
-			"sid": 224413921177548
+			"show": false,
+			"sid": 213725343132243
+		},
+		{
+			"name": "CurrentBucket",
+			"type": "number",
+			"desc": "",
+			"show": false,
+			"sid": 170495284903876
+		},
+		{
+			"name": "CurrentStory",
+			"type": "number",
+			"desc": "",
+			"show": false,
+			"sid": 165674954195527
+		},
+		{
+			"name": "CurrentPanel",
+			"type": "number",
+			"desc": "",
+			"show": false,
+			"sid": 977336280243667
 		}
 	],
 	"behaviorTypes": [],
