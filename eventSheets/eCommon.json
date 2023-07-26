@@ -131,6 +131,94 @@
 				}
 			],
 			"sid": 943308789934902
+		},
+		{
+			"functionName": "UtilDataStringBuilder",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "string",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "prefix",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"sid": 382054768418355
+				},
+				{
+					"name": "data",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"sid": 930907362278999
+				},
+				{
+					"name": "suffix",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"sid": 452274009518335
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 729158836745833,
+					"parameters": {
+						"value": "prefix&data&suffix"
+					}
+				}
+			],
+			"sid": 538710363117510
+		},
+		{
+			"functionName": "UtilNumberStringBuilder",
+			"functionDescription": "",
+			"functionCategory": "",
+			"functionReturnType": "string",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [
+				{
+					"name": "prefix",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"sid": 801420556824326
+				},
+				{
+					"name": "number",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"sid": 237887611673207
+				},
+				{
+					"name": "suffix",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"sid": 587291029359481
+				}
+			],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "set-function-return-value",
+					"objectClass": "Functions",
+					"sid": 105480047522727,
+					"parameters": {
+						"value": "prefix&str(number)&suffix"
+					}
+				}
+			],
+			"sid": 805549637237318
 		}
 	],
 	"sid": 397243133691114

@@ -8,8 +8,29 @@
 	"usedAddons": [
 		{
 			"type": "plugin",
+			"id": "AJAX",
+			"name": "AJAX",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Browser",
+			"name": "Browser",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
 			"id": "Button",
 			"name": "Button",
+			"author": "Scirra",
+			"bundled": false
+		},
+		{
+			"type": "plugin",
+			"id": "Json",
+			"name": "JSON",
 			"author": "Scirra",
 			"bundled": false
 		},
@@ -155,7 +176,11 @@
 			"Pixels",
 			"MapTransitor",
 			"InteractRange",
-			"9patch"
+			"9patch",
+			"AJAX",
+			"Browser",
+			"LayoutNPCs",
+			"JsonRGB"
 		],
 		"subfolders": [
 			{
@@ -309,17 +334,45 @@
 			"subfolders": []
 		},
 		"general": {
-			"items": [
+			"items": [],
+			"subfolders": [
 				{
-					"name": "reminders.txt",
-					"type": "text/plain",
-					"sid": 788230959892017,
-					"file-info": {
-						"purpose": "none"
-					}
+					"items": [
+						{
+							"name": "LayoutNPCs.json",
+							"type": "application/json",
+							"sid": 113364937373501,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Dialogs"
+				},
+				{
+					"items": [
+						{
+							"name": "reminders.txt",
+							"type": "text/plain",
+							"sid": 788230959892017,
+							"file-info": {
+								"purpose": "none"
+							}
+						},
+						{
+							"name": "todo.txt",
+							"type": "text/plain",
+							"sid": 847155913181870,
+							"file-info": {
+								"purpose": "none"
+							}
+						}
+					],
+					"subfolders": [],
+					"name": "Notes"
 				}
-			],
-			"subfolders": []
+			]
 		}
 	},
 	"timelines": {

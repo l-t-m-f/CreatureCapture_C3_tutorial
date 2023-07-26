@@ -1,0 +1,4 @@
+Episode 7
+- Add choice system to npcs
+- Customize the dialog trees per npcs
+

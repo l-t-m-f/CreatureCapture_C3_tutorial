@@ -17,6 +17,16 @@
 		},
 		{
 			"eventType": "variable",
+			"name": "TileSize",
+			"type": "number",
+			"initialValue": "32",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 648488267133624
+		},
+		{
+			"eventType": "variable",
 			"name": "CurrentJumpOffset",
 			"type": "number",
 			"initialValue": "0",
@@ -85,12 +95,8 @@
 					]
 				},
 				{
-					"callFunction": "SpawnNPC",
-					"sid": 694257538720434,
-					"parameters": [
-						"80",
-						"240"
-					]
+					"callFunction": "SpawnLayoutNPCs",
+					"sid": 443707828195452
 				}
 			],
 			"sid": 323895198121661
@@ -101,14 +107,14 @@
 				{
 					"id": "every-tick",
 					"objectClass": "System",
-					"sid": 213707866715610
+					"sid": 964236382778891
 				}
 			],
 			"actions": [
 				{
 					"id": "set-position",
 					"objectClass": "2DCamera",
-					"sid": 229566998128775,
+					"sid": 557270500362494,
 					"parameters": {
 						"x": "lerp(2DCamera.X, BasePlayer.X, CurrentCameraLerp)",
 						"y": "lerp(2DCamera.Y, BasePlayer.Y, CurrentCameraLerp)"
@@ -117,7 +123,7 @@
 				{
 					"id": "set-position",
 					"objectClass": "PlayerArt",
-					"sid": 454947031828948,
+					"sid": 201322856276925,
 					"parameters": {
 						"x": "BasePlayer.X",
 						"y": "BasePlayer.Y - CurrentJumpOffset"
@@ -126,7 +132,7 @@
 				{
 					"id": "set-eventvar-value",
 					"objectClass": "System",
-					"sid": 180694102156150,
+					"sid": 372069879914245,
 					"parameters": {
 						"variable": "CurrentJumpOffset",
 						"value": "PlatformSimFloor.Y - PlatformSimPlayer.Y"
@@ -134,14 +140,351 @@
 				},
 				{
 					"callFunction": "UpdateEnemies",
-					"sid": 400356863872176
+					"sid": 569966034023156
 				},
 				{
 					"callFunction": "UpdateDebugTexts",
-					"sid": 907693986643544
+					"sid": 202021810284406
 				}
 			],
-			"sid": 159047802893920
+			"sid": 135654400030545
+		},
+		{
+			"functionName": "SpawnLayoutNPCs",
+			"functionDescription": "Spawns NPCs based on information from the LayoutNPCs json data.",
+			"functionCategory": "",
+			"functionReturnType": "none",
+			"functionCopyPicked": false,
+			"functionIsAsync": false,
+			"functionParameters": [],
+			"eventType": "function-block",
+			"conditions": [],
+			"actions": [
+				{
+					"id": "request-project-file",
+					"objectClass": "AJAX",
+					"sid": 266977981810073,
+					"parameters": {
+						"tag": "\"LayoutNPCData\"",
+						"file": "LayoutNPCs.json"
+					}
+				},
+				{
+					"id": "wait-for-previous-actions",
+					"objectClass": "System",
+					"sid": 748507815795924
+				},
+				{
+					"id": "parse",
+					"objectClass": "LayoutNPCs",
+					"sid": 887460205837773,
+					"parameters": {
+						"data": "AJAX.LastData"
+					}
+				}
+			],
+			"sid": 901303443086541,
+			"children": [
+				{
+					"eventType": "variable",
+					"name": "next_layout_name",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 144880974082966
+				},
+				{
+					"eventType": "variable",
+					"name": "next_layout_npcs",
+					"type": "string",
+					"initialValue": "NULL",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 224020086899575
+				},
+				{
+					"eventType": "variable",
+					"name": "layout_count_for_npcs",
+					"type": "number",
+					"initialValue": "-1",
+					"comment": "",
+					"isStatic": false,
+					"isConstant": false,
+					"sid": 687108649580203
+				},
+				{
+					"eventType": "block",
+					"conditions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 247919615695832,
+							"parameters": {
+								"variable": "layout_count_for_npcs",
+								"value": "int(LayoutNPCs.ArraySize(\"Layouts\"))"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 299206832710954,
+							"parameters": {
+								"type": "warn",
+								"message": "Functions.UtilNumberStringBuilder(\"Layout count for NPC generation is: \", layout_count_for_npcs, \"\")"
+							}
+						}
+					],
+					"sid": 435556462561943
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "for",
+							"objectClass": "System",
+							"sid": 945094306969176,
+							"parameters": {
+								"name": "\"i\"",
+								"start-index": "0",
+								"end-index": "layout_count_for_npcs-1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 514818684205974,
+							"parameters": {
+								"variable": "next_layout_name",
+								"value": "LayoutNPCs.Get(\"Layouts.\"&loopindex(\"i\")&\".LayoutName\")"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 154313103845326,
+							"parameters": {
+								"variable": "next_layout_npcs",
+								"value": "LayoutNPCs.GetAsCompactString(\"Layouts.\"&loopindex(\"i\")&\".NPCs\")"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 630721169888182,
+							"parameters": {
+								"type": "warn",
+								"message": "next_layout_name"
+							}
+						},
+						{
+							"id": "log",
+							"objectClass": "Browser",
+							"sid": 152062349570704,
+							"parameters": {
+								"type": "warn",
+								"message": "Functions.UtilDataStringBuilder(\"NPCs as json array: \", next_layout_npcs, \"\")"
+							}
+						}
+					],
+					"sid": 243311955209068,
+					"children": [
+						{
+							"eventType": "variable",
+							"name": "npcs_count_for_layout",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 368975107119669
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 194234711984172,
+									"parameters": {
+										"first-value": "next_layout_name",
+										"comparison": 0,
+										"second-value": "LayoutName"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 182152886576977,
+									"parameters": {
+										"variable": "npcs_count_for_layout",
+										"value": "int(LayoutNPCs.ArraySize(\"Layouts.\"&loopindex(\"i\")&\".NPCs\"))"
+									}
+								},
+								{
+									"id": "log",
+									"objectClass": "Browser",
+									"sid": 372366020356065,
+									"parameters": {
+										"type": "warn",
+										"message": "Functions.UtilNumberStringBuilder(\"NPC count is: \", npcs_count_for_layout, \"\")"
+									}
+								}
+							],
+							"sid": 273882242355310,
+							"children": [
+								{
+									"eventType": "variable",
+									"name": "next_npc_name",
+									"type": "string",
+									"initialValue": "NULL",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 194458544745568
+								},
+								{
+									"eventType": "variable",
+									"name": "next_npc_spawn_tile_x",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 628856112166934
+								},
+								{
+									"eventType": "variable",
+									"name": "next_npc_spawn_tile_y",
+									"type": "number",
+									"initialValue": "-1",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 306518993757207
+								},
+								{
+									"eventType": "variable",
+									"name": "next_npc_color",
+									"type": "string",
+									"initialValue": "NULL",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 892045590818154
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 901446025874813,
+											"parameters": {
+												"name": "\"j\"",
+												"start-index": "0",
+												"end-index": "npcs_count_for_layout-1"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 417306066587786,
+											"parameters": {
+												"variable": "next_npc_name",
+												"value": "LayoutNPCs.Get(\"Layouts.\"&loopindex(\"i\")&\".NPCs.\"&loopindex(\"j\")&\".CharacterName\")"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 851827736808968,
+											"parameters": {
+												"variable": "next_npc_spawn_tile_x",
+												"value": "LayoutNPCs.Get(\"Layouts.\"&loopindex(\"i\")&\".NPCs.\"&loopindex(\"j\")&\".TileX\")"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 764707440628283,
+											"parameters": {
+												"variable": "next_npc_spawn_tile_y",
+												"value": "LayoutNPCs.Get(\"Layouts.\"&loopindex(\"i\")&\".NPCs.\"&loopindex(\"j\")&\".TileY\")"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 903196219949039,
+											"parameters": {
+												"variable": "next_npc_color",
+												"value": "LayoutNPCs.GetAsCompactString(\"Layouts.\"&loopindex(\"i\")&\".NPCs.\"&loopindex(\"j\")&\".Color\")"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 451587135582982,
+											"parameters": {
+												"type": "warn",
+												"message": "Functions.UtilDataStringBuilder(\"Next NPCs is: \", next_npc_name, \"\")"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 249498313084432,
+											"parameters": {
+												"type": "warn",
+												"message": "Functions.UtilNumberStringBuilder(\"Next NPCs spawn tile X coordinate is: \", next_npc_spawn_tile_x, \"\")"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 361932183219580,
+											"parameters": {
+												"type": "warn",
+												"message": "Functions.UtilNumberStringBuilder(\"Next NPCs spawn tile Y coordinate is: \", next_npc_spawn_tile_y, \"\")"
+											}
+										},
+										{
+											"id": "log",
+											"objectClass": "Browser",
+											"sid": 678123958755089,
+											"parameters": {
+												"type": "warn",
+												"message": "Functions.UtilDataStringBuilder(\"Next NPCs color data: \", next_npc_color, \"\")"
+											}
+										},
+										{
+											"callFunction": "SpawnNPC",
+											"sid": 398772235689507,
+											"parameters": [
+												"next_npc_name",
+												"next_npc_spawn_tile_x",
+												"next_npc_spawn_tile_y",
+												"next_npc_color"
+											]
+										}
+									],
+									"sid": 447129626260422
+								}
+							]
+						}
+					]
+				}
+			]
 		},
 		{
 			"eventType": "variable",
@@ -419,18 +762,32 @@
 					"functionIsAsync": false,
 					"functionParameters": [
 						{
-							"name": "x",
+							"name": "name",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"sid": 486975639752168
+						},
+						{
+							"name": "tile_x",
 							"type": "number",
 							"initialValue": "-1",
 							"comment": "",
 							"sid": 829943118363645
 						},
 						{
-							"name": "y",
+							"name": "tile_y",
 							"type": "number",
 							"initialValue": "-1",
 							"comment": "",
 							"sid": 727273741215570
+						},
+						{
+							"name": "json_rgb",
+							"type": "string",
+							"initialValue": "NULL",
+							"comment": "",
+							"sid": 320406990294232
 						}
 					],
 					"eventType": "function-block",
@@ -439,18 +796,155 @@
 						{
 							"id": "create-object",
 							"objectClass": "System",
-							"sid": 145204969754172,
+							"sid": 733183816206556,
 							"parameters": {
 								"object-to-create": "BaseNPC",
 								"layer": "\"GameTest\"",
-								"x": "x",
-								"y": "y",
+								"x": "tile_x * TileSize",
+								"y": "tile_y * TileSize",
 								"create-hierarchy": true,
 								"template-name": "\"\""
 							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "BaseNPC",
+							"sid": 961692330781037,
+							"parameters": {
+								"instance-variable": "NPCName",
+								"value": "name"
+							}
 						}
 					],
-					"sid": 416711344141598
+					"sid": 416711344141598,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-children",
+									"objectClass": "BaseNPC",
+									"sid": 512034463811397,
+									"parameters": {
+										"child": "Text",
+										"which": "own"
+									}
+								},
+								{
+									"id": "compare-two-values",
+									"objectClass": "System",
+									"sid": 352971992269580,
+									"parameters": {
+										"first-value": "Text.TemplateName",
+										"comparison": 0,
+										"second-value": "\"NPCName\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-text",
+									"objectClass": "Text",
+									"sid": 955132685943665,
+									"parameters": {
+										"text": "BaseNPC.NPCName"
+									}
+								}
+							],
+							"sid": 455279945454552
+						},
+						{
+							"eventType": "variable",
+							"name": "r",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 612640387229625
+						},
+						{
+							"eventType": "variable",
+							"name": "g",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 565432463425934
+						},
+						{
+							"eventType": "variable",
+							"name": "b",
+							"type": "number",
+							"initialValue": "-1",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 776922215209117
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-eventvar",
+									"objectClass": "System",
+									"sid": 208202682248233,
+									"parameters": {
+										"variable": "json_rgb",
+										"comparison": 1,
+										"value": "\"NULL\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "parse",
+									"objectClass": "JsonRGB",
+									"sid": 890424428698994,
+									"parameters": {
+										"data": "json_rgb"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 190472503383849,
+									"parameters": {
+										"variable": "r",
+										"value": "JsonRGB.Get(\"0\")"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 734087203937179,
+									"parameters": {
+										"variable": "g",
+										"value": "JsonRGB.Get(\"1\")"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 688349179607104,
+									"parameters": {
+										"variable": "b",
+										"value": "JsonRGB.Get(\"2\")"
+									}
+								},
+								{
+									"id": "set-default-color",
+									"objectClass": "BaseNPC",
+									"sid": 685461433538558,
+									"parameters": {
+										"color": "rgbEx255(r, g, b)"
+									}
+								}
+							],
+							"sid": 368944595236018
+						}
+					]
 				},
 				{
 					"functionName": "UpdateNPCs",

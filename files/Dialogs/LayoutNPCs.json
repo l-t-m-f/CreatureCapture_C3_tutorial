@@ -1,0 +1,19 @@
+{
+	"Layouts" : [
+	
+		{ "LayoutName" : "Overworld1_1",
+		  "NPCs" : [
+		
+			{ "CharacterName" : "Annie", "TileX" : 19, "TileY" : 11, "Color" : [255, 0, 0] },
+			{ "CharacterName" : "Rocky", "TileX" : 4, "TileY" : 4, "Color" : [0, 255, 0] } 
+		
+		]  },
+		{ "LayoutName" : "Overworld1_2",
+		  "NPCs" : [
+		
+			{ "CharacterName" : "Bob", "TileX" : 17, "TileY" : 19, "Color" : [0, 0, 255] }
+		
+		]  }
+	
+	]
+}

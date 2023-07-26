@@ -2144,7 +2144,20 @@
 		}
 	],
 	"sid": 395305995234827,
-	"nonworld-instances": [],
+	"nonworld-instances": [
+		{
+			"type": "LayoutNPCs",
+			"properties": {},
+			"uid": 52,
+			"instanceVariables": {}
+		},
+		{
+			"type": "JsonRGB",
+			"properties": {},
+			"uid": 54,
+			"instanceVariables": {}
+		}
+	],
 	"effectTypes": [],
 	"width": 1280,
 	"height": 720,
